@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+    <body>
+        <div class="container mt-5">
+            <h1>Bank Account</h1>
+            <p>Username: <span th:text="${user.getUsername()}"></span></p>
+            <p>Balance: <span th:text="${user.getBalance()}"></span></p>
+            <form action="/account/deposit" method="POST">
+                <div class="form-group">
+                    <label for="depositAmount">Deposit Amount:</label>
+                    <input type="number" class="form-control col-sm-4" id="depositAmount" name="depositAmount" step="0.01" required>
+                </div>
+                <button type="submit" class="btn btn-success">Deposit</button>
+            </form>
+            <form action="/account/withdraw" method="POST">
+                <div class="form-group">
+                    <label for="withdrawAmount">Withdraw Amount:</label>
+                    <input type="number" class="form-control col-sm-4" id="withdrawAmount" name="withdrawAmount" step="0.01" required>
+                </div>
+                <button type="submit" class="btn btn-danger">Withdraw</button>
+            </form>
+            <p>Assigned Node: <span th:text="${user.getAffinityNode()}"></span></p>
+            <form action="/logout" method="POST">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    </body>
+</html>
