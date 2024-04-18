@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  bootstrap:
+    build: ./Bootstrap
+    ports:
+      - "8080:8080"
+    networks:
+      nosql_db_cluster:
+        ipv4_address: 172.18.0.2
+
+  node1:
+    build: ./Database
+    ports:
+      - "8081:8080"
+    networks:
+      nosql_db_cluster:
+        ipv4_address: 172.18.0.3
+    depends_on:
+      - bootstrap
+
+  node2:
+    build: ./Database
+    ports:
+      - "8082:8080"
+    networks:
+      nosql_db_cluster:
+        ipv4_address: 172.18.0.4
+    depends_on:
+      - node1
+
+  node3:
+    build: ./Database
+    ports:
+      - "8083:8080"
+    networks:
+      nosql_db_cluster:
+        ipv4_address: 172.18.0.5
+    depends_on:
+      - node2
+
+  bankapplication:
+    build: ./BankApplication
+    ports:
+      - "8084:8080"
+    networks:
+      nosql_db_cluster:
+        ipv4_address: 172.18.0.6
+    depends_on:
+      - node3
+
+networks:
+  nosql_db_cluster:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16

@@ -1,0 +1,1 @@
+[{"users":"{\r\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r\n  \"type\": \"object\",\r\n  \"properties\": {\r\n    \"username\": {\r\n      \"type\": \"string\"\r\n    },\r\n    \"password\": {\r\n      \"type\": \"string\"\r\n    }  },\r\n  \"required\": [\r\n    \"username\",\r\n    \"password\",\r\n  ]\r\n}"}]
